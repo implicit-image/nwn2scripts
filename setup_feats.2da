@@ -1,0 +1,32 @@
+2DA V2.0
+
+        LABEL                                    ID     LENGTH   FEATLISTDATA
+0       FlurryOfBlows                             204      1       ****
+1       WeapProfSim                               46       1       ****
+2       WeapProfEx                                44       1       ****
+3       WeapProfMar                               45       1       ****
+4       ArmProfLgt                                3        1       ****
+5       ArmProfMed                                4        1       ****
+6       ArmProfHvy                                2        1       ****
+7       Empower                                   11       1       ****
+8       ExtSpell                                  12       1       ****
+9       MaxSpell                                  25       1       ****
+10      Quicken                                   29       1       ****
+11      Silent                                    33       1       ****
+12      StillSpell                                37       1       ****
+13      SpellPen                                  36       1       ****
+14      FEAT_EXTRA_SLOT_BARD                      1283     6       ****
+15      FEAT_EXTRA_SLOT_CLERIC                    1289     9       ****
+16      FEAT_EXTRA_SLOT_DRUID                     1298     9       ****
+17      FEAT_EXTRA_SLOT_PALADIN                   1307     3       ****
+18      FEAT_EXTRA_SLOT_RANGER                    1310     3       ****
+19      FEAT_EXTRA_SLOT_SORCERER                  1313     9       ****
+20      FEAT_EXTRA_SLOT_WIZARD                    1322     9       ****
+21      GrSplFcs                                  393      8        ****
+22      GreatSpellPen                             401      1        ****
+23      Mobility                                  26       1        ****
+24      Toughness                                 40       1        ****
+25      TwoWeaponFighting                         41       1        ****
+26      WeaponFinesse                             42       1        ****
+27      PointBlankShot                            27       1        ****
+28      SpellFoci                                 ****     ****     "35:1,166:7"
