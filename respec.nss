@@ -10,10 +10,6 @@ int GetClassPackageId(string className) {
 
     for (row = 0; row < row_cap;row++) {
         string packageLabel = Get2DAString(s2DAPath, "LABEL", row);
-        if (packageLabel == "") {
-            Log("ERROR GETTING CLASS PACKAGE LABEL", STATUS_BAD);
-            return -1;
-        }
         if (GetStringUpperCase(packageLabel) == uClassName) {
             packageId = row;
             break;
@@ -21,33 +17,39 @@ int GetClassPackageId(string className) {
     }
     return packageId;
 }
+
+
+
 //TODO: for some reason doesnt work for player character
 int GetFirstLevelAsClass(object oCharacter, string className) {
-    SetXP(oCharacter, 0);
-    int packageId = GetClassPackageId(className);
-    Log("PACKAGE ID: " + IntToString(packageId));
-    if (packageId == -1) {
+    int newPackageId = GetClassPackageId(className);
+    Log("TARGET PACKAGE ID: " + IntToString(newPackageId));
+    if (newPackageId == -1) {
         Log("Using current class package");
-        packageId = GetCreatureStartingPackage(oCharacter);
+        newPackageId = GetCreatureStartingPackage(oCharacter);
+        if (newPackageId == 255) {
+            Log("Current package is invalid!", STATUS_BAD);
+            return -1;
+        }
     }
-    SetLevelUpPackage(oCharacter, packageId);
+    Log("Setting xp to 0");
+    SetXP(oCharacter, 0);
+    Log("Setting up new package");
+    SetLevelUpPackage(oCharacter, newPackageId);
     ResetCreatureLevelForXP(oCharacter, 0, FALSE);
     return 0;
 }
 
 
 void main(string class) {
-    int classPackageId;
+    int newPackageId;
     object oPC = GetControlledCharacter(OBJECT_SELF);
-    classPackageId = GetClassPackageId(class);
-
+    string name = GetName(oPC);
+    Log("RESPECCING " + name);
+    newPackageId = GetClassPackageId(class);
+    int currPackage = GetCreatureStartingPackage(oPC);
+    Log("Current package id is: " + IntToString(currPackage));
     int currXP = GetXP(oPC);
-    string sCurrXP = IntToString(currXP);
     int res = GetFirstLevelAsClass(oPC, class);
-
     SetXP(oPC, currXP);
-
-    /* SetXP(oPC, 0); */
-    /* SetXP(oPC, currXP); */
-    /* SetXP(oPC, 0); */
 }

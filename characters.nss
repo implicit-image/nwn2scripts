@@ -1,5 +1,6 @@
 #include "utils"
 #include "feats"
+#include "slots"
 
 string GetCharacterFile(string sCharacterName, string sFileType) {
     int row;
@@ -22,14 +23,13 @@ string GetCharacterFile(string sCharacterName, string sFileType) {
             if (rsrcPath == "****") {
                 // character is defined but does not have feats file
                 if (sColumn == "EQUIPMENT_FILE") {
-                    return "p_def_eq";
+                    return "def_eq";
                 } else if (sColumn == "FEATS_FILE") {
-                    return "p_def_ft";
+                    return "def_feats";
                 }
             }
             return rsrcPath;
         }
-        Log("EPIC FAIL", STATUS_BAD);
     }
     return "";
 }
@@ -43,16 +43,9 @@ string GetEquipmentFilePath(string sCharacterName) {
     return GetCharacterFile(sCharacterName, "EQUIPMENT_FILE");
 }
 
-int SetupCharacter(object oPC) {
+
+void LoadFeatsFromFile(object oPC, string s2DAPath) {
     int row;
-    string name = GetName(oPC);
-    string s2DAPath = GetFeatFilePath(name);
-    if (s2DAPath == "") {
-        Log("Getting path for " + name + " failed");
-        // this character does not have feat file path defined
-        return -1;
-    }
-    Log("Character feat file path is " + s2DAPath);
     int row_cap = GetNum2DARows(s2DAPath);
     for (row = 1; row <= row_cap; row++) {
         string feat_label = Get2DAString(s2DAPath, "LABEL", row);
@@ -74,5 +67,24 @@ int SetupCharacter(object oPC) {
             FeatAdd(oPC, featID, 0, 1, 0);
         }
     }
+}
+
+
+int SetupCharacter(object oPC, int useDefault) {
+    string name = GetName(oPC);
+    // give bonus spell slots corresponding to class
+    GiveSlots(oPC);
+    string s2DAPath = GetFeatFilePath(name);
+    if (s2DAPath == "") {
+        if (useDefault == 1) { // 1 == TRUE
+            Log("Using default feat config");
+            s2DAPath = "def_feats";
+        } else {
+            // this character does not have feat file path defined
+            return -1;
+        }
+    }
+    Log("Character feat file path is " + s2DAPath);
+    LoadFeatsFromFile(oPC, s2DAPath);
     return 0;
 }

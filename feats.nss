@@ -74,11 +74,6 @@ int AddCompactFeat(object oCreature, int featID, int length) {
     return 0;
 }
 
-
-
-
-
-
 //SECOND COMPACT FEATS IMPLEMENTATION
 //
 //      LABEL    ......   FEATLISTDATA
