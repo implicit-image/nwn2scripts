@@ -4,7 +4,12 @@
 # @file
 # @version 0.1
 
-setup:
-	WINEPREFIX=~/wine-prefixes/games/Neverwinter-Nights-2-Complete wine nwnsc.exe -g -i ./Scripts/ mysetup.nss
+all: setup respec
+
+setup: mysetup.nss setup_feats.2da
+	./nwnsc.sh mysetup.nss
+
+respec: respec.nss
+	./nwnsc.sh respec.nss
 
 # end
