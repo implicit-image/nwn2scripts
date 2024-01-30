@@ -14,4 +14,5 @@ void Log(string message, int status=STATUS_INFO) {
     }
     string RGBmsg = "<color=" + color + ">" + message + "</color>";
     SendMessageToPC(OBJECT_SELF, RGBmsg);
+    PrintString(message);
 }
