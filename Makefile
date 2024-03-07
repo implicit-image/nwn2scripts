@@ -4,13 +4,22 @@
 # @file
 # @version 0.1
 
-all: setup respec
+NWNSC      = /usr/bin/wine ../../bin/nwnsc.exe
+NWNSCFLAGS = -g
+INCFLAGS   = -i "../../../override/zMerger/;../../../override/uReeron/;../../Scripts/;../../Scripts_X1/;../../Scripts_X2/;"
+DESTDIR    = ../../../override/zzMyScripts/
 
-setup: setup.nss setup_feats.2da
-	./nwnsc.sh setup.nss
+# copy:
 
-respec: respec.nss
-	./nwnsc.sh respec.nss
+all: compile 2da ncs
 
+2da: $(wildcard *.2da)
+	for file in $?; do cp $$file $(DESTDIR); done
+
+ncs: $(wildcard *.ncs)
+	for file in $?; do mv $$file $(DESTDIR); done
+
+compile: $(wildcard *.nss)
+	for file in $?; do $(NWNSC) $(NWNSCFLAGS) $(INCFLAGS) $$file; done
 
 # end

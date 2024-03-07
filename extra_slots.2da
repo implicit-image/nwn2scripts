@@ -1,0 +1,11 @@
+2DA V2.0
+       LABEL                                    ID      LENGTH  FEATLISTDATA
+0      FEAT_EXTRA_SLOT_BARD                      1283     6       ****
+1      FEAT_EXTRA_SLOT_CLERIC                    1289     9       ****
+2      FEAT_EXTRA_SLOT_DRUID                     1298     9       ****
+3      FEAT_EXTRA_SLOT_PALADIN                   1307     3       ****
+4      FEAT_EXTRA_SLOT_RANGER                    1310     3       ****
+5      FEAT_EXTRA_SLOT_SORCERER                  1313     9       ****
+6      FEAT_EXTRA_SLOT_WIZARD                    1322     9       ****
+7      FEAT_EXTRA_SLOT_SPIRIT_SHAMAN             2004     9       ****
+8      FEAT_EXTRA_SLOT_FAVORED_SOUL              2069     9       ****

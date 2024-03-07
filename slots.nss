@@ -5,7 +5,6 @@
 string ClassFromLabel(string label) {
     string class;
     class = GetSubString(label, 16, 30);
-    Log("Class: " + class + " from label " + label);
     return class;
 }
 
@@ -16,6 +15,7 @@ void GiveSlots(object oPC) {
     int class_pos;
     string s2DAPath = "extra_slots";
     int row_cap = GetNum2DARows(s2DAPath);
+    Log("GIVING SPELL SLOTS:", STATUS_BAD);
     for (class_pos = 1; class_pos <= 4; class_pos++) {
         int classId = GetClassByPosition(class_pos, oPC);
         if (classId == CLASS_TYPE_INVALID) {

@@ -20,19 +20,14 @@ int SmartAddFeat(
         int    hasPrereq1    = GetHasFeat(prereq1, oCreature);
         int    hasPrereq2    = GetHasFeat(prereq2, oCreature);
 
-        Log( "NOW GIVING " + currFeatLabel);
         if (bGiveReq) {
             bCheckReq = FALSE;
             if (prereq1) {
-                Log("PREREQ 1 is " + prereq1Label);
                 if (!hasPrereq1) {
-                    Log( "PLAYER DOESNT HAVE " + prereq1Label + ", ADDING");
                     SmartAddFeat(oCreature, prereq1, bCheckReq, bGiveReq, bFeedback);
                 }
                 if (prereq2) { //there are 2 prereqs
-                    Log( "PREREQ 2 is " + prereq2Label);
                     if (!hasPrereq2) {
-                        Log( "PLAYER DOESNT HAVE " + prereq2Label + ", ADDING");
                         SmartAddFeat(oCreature, prereq2, bCheckReq, bGiveReq, bFeedback);
                     }
                 }

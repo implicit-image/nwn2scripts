@@ -16,3 +16,9 @@ void Log(string message, int status=STATUS_INFO) {
     SendMessageToPC(OBJECT_SELF, RGBmsg);
     PrintString(message);
 }
+
+int Clamp(int iValue, int iLower=0, int iUpper=40) {
+    if (iValue > iUpper) { return iUpper; }
+    if (iValue < iLower) { return iLower; }
+    return iValue;
+}
