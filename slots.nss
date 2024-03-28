@@ -3,8 +3,11 @@
 
 
 string ClassFromLabel(string label) {
-    string class;
-    class = GetSubString(label, 16, 30);
+    int iStrLength = GetStringLength(label);
+    if (iStrLength == -1) {
+        return CLASS_TYPE_INVALID;
+    }
+    string class = GetSubString(label, 16, iStrLength);
     return class;
 }
 
