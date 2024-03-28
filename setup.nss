@@ -16,5 +16,5 @@ void main(string mode) {
     else {
         Log("INCORRECT ARGUMENT " + mode + "\n QUITTING...", STATUS_BAD);
     }
-    Log( "CONFIG ENDED");
+    Log("CONFIG ENDED");
 }
