@@ -6,7 +6,7 @@ string GetCharacterFile(string sCharacterName, string sFileType) {
     int row;
     // correct path
     string s2DAPath = "characters";
-    Log("characters file path is " + s2DAPath);
+    Info("characters file path is " + s2DAPath);
     string sColumn = "FEATS_FILE";
     if (sFileType == "EQUIPMENT") {
         sColumn = "EQUIPMENT_FILE";
@@ -15,11 +15,11 @@ string GetCharacterFile(string sCharacterName, string sFileType) {
     for (row = 0;row<row_cap;row++) {
         string name = Get2DAString(s2DAPath, "NAME", row);
         if (name == "") {
-            Log("READING FROM " + s2DAPath + " FUCKED UP!!!", STATUS_BAD);
+            Error("READING FROM " + s2DAPath + " FUCKED UP!!!");
         }
         if (name == sCharacterName) {
             string rsrcPath = Get2DAString(s2DAPath, sColumn, row);
-            Log("PATH: " + rsrcPath);
+            Info("PATH: " + rsrcPath);
             if (rsrcPath == "****") {
                 // character is defined but does not have feats file
                 if (sColumn == "EQUIPMENT_FILE") {
@@ -52,18 +52,18 @@ void LoadFeatsFromFile(object oPC, string s2DAPath) {
         string sFeatID    = Get2DAString(s2DAPath, "ID", row);
         string sLength    = Get2DAString(s2DAPath, "LENGTH", row);
         string sFeatList  = Get2DAString (s2DAPath, "FEATLISTDATA", row);
-        Log("sFeatList for " + feat_label + " is " + sFeatList, STATUS_GOOD);
+        Success("sFeatList for " + feat_label + " is " + sFeatLis);
         if (feat_label == "") {
-            Log( "END OF FILE", STATUS_GOOD);
+            Success( "END OF FILE");
             break;
         }
         int featID = StringToInt(sFeatID);
         int length  = StringToInt(sLength);
         if (length > 1) {
-            Log("ADDING COMPACT FEAT: " + feat_label, STATUS_GOOD);
+            Success("ADDING COMPACT FEAT: " + feat_label);
             AddCompactFeat(oPC, featID, length);
         } else if (sFeatList != "") {
-            Log("ADDING COMPACT FEAT LIST: " + feat_label + " " + sFeatList, STATUS_GOOD);
+            Success("ADDING COMPACT FEAT LIST: " + feat_label + " " + sFeatList);
             AddCompactFeatList(oPC, sFeatList);
         } else {
             FeatAdd(oPC, featID, 0, 1, 0);
@@ -72,17 +72,17 @@ void LoadFeatsFromFile(object oPC, string s2DAPath) {
 }
 
 void GiveBasicFeats(object oPC) {
-    Log("GIVING BASIC FEATS: ", STATUS_BAD);
+    Info("GIVING BASIC FEATS: ");
     LoadFeatsFromFile(oPC, "def_feats");
 }
 
-int LoadCharacterFeats(object oPC) {
+int GiveCharacterFeats(object oPC) {
     string name = GetName(oPC);
-    Log("LOADING CHARACTER FEATS FOR" + name, STATUS_BAD);
+    Info("LOADING CHARACTER FEATS FOR" + name);
     string s2DAPath = GetFeatFilePath(name);
     if (s2DAPath == "") {
         // this character does not have feat file path defined
-        Log("FAILED GETTING CHARACTER FEAT FILE", STATUS_BAD)
+        Error("FAILED GETTING CHARACTER FEAT FILE")
 ;       return -1;
     }
     LoadFeatsFromFile(oPC, s2DAPath);
@@ -91,10 +91,10 @@ int LoadCharacterFeats(object oPC) {
 
 int SetupCharacter(object oPC) {
     string name = GetName(oPC);
-    Log("SETTING UP " + name + " -------------", STATUS_BAD);
+    Error("SETTING UP " + name + " -------------");
     // give bonus spell slots corresponding to class
     GiveSlots(oPC);
     GiveBasicFeats(oPC);
-    LoadCharacterFeats(oPC);
+    GiveCharacterFeats(oPC);
     return 0;
 }

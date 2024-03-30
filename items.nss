@@ -10,5 +10,5 @@ void LoadItemsFromFile(string s2DAPath, int amount) {
         string item = Get2DAString(s2DAPath, "REF", i);
         CreateItemOnObject(item, oPC, amount);
     }
-    Log("END");
+    Info("END");
 }

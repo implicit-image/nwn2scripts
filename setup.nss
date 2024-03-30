@@ -14,7 +14,7 @@ void main(string mode) {
         LoadItemsFromFile("spc_items", 1);
     }
     else {
-        Log("INCORRECT ARGUMENT " + mode + "\n QUITTING...", STATUS_BAD);
+        Error("INCORRECT ARGUMENT " + mode + "\n QUITTING...");
     }
-    Log("CONFIG ENDED");
+    Info("CONFIG ENDED");
 }

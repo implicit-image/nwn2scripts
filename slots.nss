@@ -18,7 +18,7 @@ void GiveSlots(object oPC) {
     int class_pos;
     string s2DAPath = "extra_slots";
     int row_cap = GetNum2DARows(s2DAPath);
-    Log("GIVING SPELL SLOTS:", STATUS_BAD);
+    Error("GIVING SPELL SLOTS:");
     for (class_pos = 1; class_pos <= 4; class_pos++) {
         int classId = GetClassByPosition(class_pos, oPC);
         if (classId == CLASS_TYPE_INVALID) {
