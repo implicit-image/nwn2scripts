@@ -54,8 +54,8 @@ int SmartAddFeat(
 //                                             how many next feats to take
 //                                             starting from position ID
 //arbitrary, for user only                           |
-//         |           is a feat id from feat.2da    |
-//         v            v                            v
+//         |         a feat id from feat.2da         |
+//         v           v                             v
 //         LABEL      ID                          LENGTH
 //   0    splfocus    x                              8
 //
